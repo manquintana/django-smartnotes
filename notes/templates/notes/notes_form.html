@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- <form action="{% url 'notes.new' %}" method="POST">{% csrf_token %}  
+    Action is not necessary!! De esta forma puedo usar el mismo form tanto para Crear como para Update!!
+    Django decidira cual es el form de destino automaticamente y lo muestra en la web
+-->
+<form method="POST">{% csrf_token %}
+    {{ form }} 
+    <!-- Django ya sabe que tipo de campos crear en el Form de acuerdo a los tipos de datos de cada cosa. -->
+    <button type="submit">Submit note!</button>
+</form>
+{% if form.errors %}
+<div class="form-with-error">
+    {{ form.errors.title.as_text }}
+</div>
+{% endif %}
+{% endblock %}
